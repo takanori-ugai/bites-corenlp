@@ -8,7 +8,7 @@ group = "com.complexible.stardog.docs.corenlp"
 version = "1.3.0"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-val stardogVersion by extra("8.1.1")
+val stardogVersion by extra("8.1.3")
 val corenlpVersion by extra("4.0.0")
 val junitVersion by extra("4.12")
 
@@ -58,4 +58,10 @@ tasks.test {
     systemProperty("stardog.home", System.getProperty("stardog.home"))
     systemProperty("java.library.path", System.getProperty("stardog.home") + "/lib")
     maxHeapSize = "8g"
+    jvmArgs(
+        "--add-opens=java.base/java.lang=ALL-UNNAMED",
+        "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
+        "--add-opens=java.base/java.util=ALL-UNNAMED",
+        "--add-opens=java.base/java.io=ALL-UNNAMED"
+    )
 }
