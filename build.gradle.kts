@@ -1,5 +1,5 @@
 plugins {
-    id("com.gradleup.shadow") version "9.0.2"
+    id("com.gradleup.shadow") version "9.1.0"
     java
     // id("maven-publish") // Only if you need to publish artifacts
 }
