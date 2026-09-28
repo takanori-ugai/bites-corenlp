@@ -19,6 +19,7 @@
 package com.complexible.stardog.docs.nlp.impl;
 
 import java.io.FileInputStream;
+import java.net.ConnectException;
 import java.util.Set;
 
 import com.complexible.stardog.api.Connection;
@@ -27,6 +28,7 @@ import com.complexible.stardog.api.admin.AdminConnection;
 import com.complexible.stardog.api.admin.AdminConnectionConfiguration;
 import com.complexible.stardog.protocols.http.client.HttpConnection;
 import com.complexible.stardog.protocols.http.docs.client.HttpBitesConnection;
+import com.complexible.stardog.server.StardogConnectionException;
 import com.complexible.stardog.search.SearchOptions;
 import com.stardog.stark.IRI;
 import com.stardog.stark.Value;
@@ -38,6 +40,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.junit.After;
+import org.junit.Assume;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -65,6 +68,13 @@ public class CoreNLPRDFExtractorTest {
 			}
 
 			mConnectionConfiguration = aConn.newDatabase(DB).set(SearchOptions.SEARCHABLE, true).create();
+		} catch (StardogConnectionException e) {
+			for (Throwable cause = e; cause != null; cause = cause.getCause()) {
+				if (cause instanceof ConnectException) {
+					Assume.assumeTrue("Stardog must be running at http://localhost:5820", false);
+				}
+			}
+			throw e;
 		}
 	}
 

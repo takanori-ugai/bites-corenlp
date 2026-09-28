@@ -8,9 +8,13 @@ group = "com.complexible.stardog.docs.corenlp"
 version = "1.3.0"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-val stardogVersion by extra("8.1.3")
-val corenlpVersion by extra("4.0.0")
-val junitVersion by extra("4.12")
+extra.set("stardogVersion", "8.2.2")
+extra.set("corenlpVersion", "4.0.0")
+extra.set("junitVersion", "4.12")
+
+val stardogVersion = extra["stardogVersion"] as String
+val corenlpVersion = extra["corenlpVersion"] as String
+val junitVersion = extra["junitVersion"] as String
 
 repositories {
     maven {
