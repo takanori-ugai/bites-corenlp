@@ -10,7 +10,7 @@ java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 extra.set("stardogVersion", "8.2.2")
 extra.set("corenlpVersion", "4.0.0")
-extra.set("junitVersion", "4.12")
+extra.set("junitVersion", "4.13.2")
 
 val stardogVersion = extra["stardogVersion"] as String
 val corenlpVersion = extra["corenlpVersion"] as String
